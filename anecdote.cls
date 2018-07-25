@@ -1575,13 +1575,14 @@ philo-sophical munindo amaravati thai-land}
 \setlength{\vindent}{\vgap}
 \setlength{\vleftmargin}{2em}
 
-\setlength{\parskip}{8pt}
-\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{17pt}
 
 % === setup page layout ===
 
-\setlength{\BOOK@paperHeight}{9in}
-\setlength{\BOOK@paperWidth}{6in}
+% Page size: 5.25 x 8 inch = 133.35 x 203.2 mm
+\setlength{\BOOK@paperHeight}{8in}
+\setlength{\BOOK@paperWidth}{5.25in}
 
 \ifshowtrims
   \stockaiv% use A4 paper size to show trims
@@ -1599,15 +1600,12 @@ philo-sophical munindo amaravati thai-land}
 \fi
 
 % Text block for 10.5 / 15pt:
-%%\settypeblocksize{521pt}{*}{0.599}% 1/1.667, 3:5, major 6th (183.79mm x 110mm)
-%\settypeblocksize{34\baselineskip + \topskip}{*}{0.599}% 1/1.667, 3:5, major 6th
-%\setlrmargins{*}{20mm}{*}% 22.71669mm and 19.99976mm
+\settypeblocksize{29\baselineskip + \topskip}{95mm}{*}
+\setlrmargins{*}{*}{0.63}% gives: 22.30mm | 14.04mm
+\setulmargins{*}{*}{1.701}% Tall Pentagon
+\setlength{\footskip}{3\baselineskip}
 
-\settypeblocksize{190mm}{110mm}{*}
-\setlrmargins{*}{20mm}{*}
-
-\setulmargins{42pt}{*}{*}% Based on Tall Pentagon, 1.701
-\setlength{\footskip}{30pt}
+\setlength{\headsep}{15pt}
 
 % Fixes these warnings:
 %
