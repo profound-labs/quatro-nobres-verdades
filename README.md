@@ -3,9 +3,6 @@ Quatro Nobres Verdades
 
 Portuguese translation of *Four Noble Truths* by Ajahn Sumedho
 
-Paperback status: **N/A**  
-Ebook status: **N/A**
-
 First edition
 
 ISBN for paperback: `000-000-0000-00-0`

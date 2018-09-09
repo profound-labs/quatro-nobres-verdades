@@ -145,8 +145,8 @@
 \definecolor{chaptertitle}{gray}{0.2}
 \definecolor{chaptertitlefootnote}{gray}{0.4}
 \definecolor{chapterauthor}{gray}{0.3}
-\definecolor{chapternote}{gray}{0.3}
-\definecolor{section}{gray}{0.5}
+\definecolor{chapternote}{gray}{0.1}
+\definecolor{section}{gray}{0.2}
 \definecolor{tocleftside}{gray}{0.5}
 \definecolor{tocleftsidepart}{gray}{0.2}
 \definecolor{partname}{gray}{0.5}
@@ -178,6 +178,9 @@
 ]{Crimson-Roman.otf}
 
 \newfontfamily\crimsonRomanFontOldNum[
+  SmallCapsFeatures= { LetterSpace = 0.2 },
+  BoldFont = Crimson-Semibold.otf,
+  ItalicFont = Crimson-Italic.otf,
   Numbers = OldStyle,
 ]{Crimson-Roman.otf}
 
@@ -187,23 +190,30 @@
   BoldItalicFont = GenBkBasBI.ttf,
 ]{GentiumPlus-R.ttf}
 
+\newfontfamily\vollkornFont[
+  ItalicFont = Vollkorn-Italic.otf,
+  BoldFont = Vollkorn-Bold.otf,
+]{Vollkorn-Regular.otf}
+
+\newfontfamily\sourceSansFont{SourceSansPro-Regular.otf}
+
 % header and footer
 
-\newcommand\headerFont\crimsonRomanFont
-\newcommand\footerFont\gentiumFont
-\newcommand\pageNumFont\gentiumFont
+\newcommand\headerFont\vollkornFont
+\newcommand\footerFont\vollkornFont
+\newcommand\pageNumFont\vollkornFont
 
 % chapter and section
 
 \newcommand\partTitleFont\crimsonRomanFont
 
-\newcommand\chapterNameFont\crimsonRomanFont
-\newcommand\chapterTitleFont\crimsonRomanFont
-\newcommand\chapterNumberFont\crimsonRomanFont
-\newcommand\chapterAuthorFont\crimsonRomanFont
-\newcommand\chapterNoteFont\crimsonRomanFont
+\newcommand\chapterNameFont\vollkornFont
+\newcommand\chapterTitleFont\vollkornFont
+\newcommand\chapterNumberFont\crimsonRomanFontOldNum
+\newcommand\chapterAuthorFont\vollkornFont
+\newcommand\chapterNoteFont\gentiumFont
 
-\newcommand\sectionFont\crimsonRomanFont
+\newcommand\sectionFont\sourceSansFont
 
 % quote
 
@@ -217,11 +227,11 @@
 % Some default font sizes, use \renewcommand to adjust
 
 \newcommand{\chapterNameSize}{\@setfontsize          \chapterNameSize          {22}{24}}
-\newcommand{\chapterNumberSize}{\@setfontsize        \chapterNumberSize        {22}{24}}
-\newcommand{\chapterTitleSize}{\@setfontsize         \chapterTitleSize         {13}{16.5}}
+\newcommand{\chapterNumberSize}{\@setfontsize        \chapterNumberSize        {24}{24}}
+\newcommand{\chapterTitleSize}{\@setfontsize         \chapterTitleSize         {16}{16}}
 \newcommand{\chapterTitleFootnoteSize}{\@setfontsize \chapterTitleFootnoteSize {16}{30}}
 \newcommand{\chapterAuthorSize}{\@setfontsize        \chapterAuthorSize        {12}{14}}
-\newcommand{\chapterNoteSize}{\@setfontsize          \chapterNoteSize          {13}{15}}
+\newcommand{\chapterNoteSize}{\@setfontsize          \chapterNoteSize          {12}{15}}
 \newcommand{\footerSize}{\@setfontsize               \footerSize               {10.5}{10.5}}
 \newcommand{\headerSize}{\@setfontsize               \headerSize               {10}{10}}
 
@@ -295,6 +305,11 @@
 }{}
 \ifthenelse{\equal{\BOOK@babelLanguage}{portuguese}}{
   \renewcommand\portuguesehyphenmins{{3}{3}}
+  % If using babel, captions names have to be renamed like this
+  \addto\captionsportuguese{
+    \renewcommand{\contentsname}{Índice}
+    \renewcommand{\bibname}{Referências}
+  }
 }{}
 
 \hyphenpenalty=700
@@ -843,6 +858,57 @@ philo-sophical munindo amaravati thai-land}
   \createplainmark{glossary}{both}{\glossaryname}
 }
 
+\newcommand\footDecor{%
+  \AddToShipoutPictureFG*{%
+    \put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
+      \begin{tikzpicture}
+        \node (bg) [
+          minimum width = \BOOK@paperWidth + 6mm,
+          minimum height = \BOOK@paperHeight + 6mm,
+        ] {};
+        %
+        \node (bottombox) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          minimum height=3pt,
+          above left=12mm and 0pt of bg.south west,
+          anchor=south west,
+          inner sep=0pt,
+        ] {};
+        %
+        \draw [line width=0.4pt, draw=black!25, dash pattern=on 1pt off 5pt]
+          (bottombox.north west) -- (bottombox.north east);
+        %
+        \draw [line width=0.4pt, draw=black!20]
+          (bottombox.south west) -- (bottombox.south east);
+        %
+      \end{tikzpicture}%
+    }%
+  }%
+}
+
+\makepagestyle{topbottomcorner}
+\makeevenhead{topbottomcorner}{\footDecor}{}{}
+\makeevenfoot{topbottomcorner}%
+  {\footerFont\footerSize\color{footer}\thepage}
+  {}
+  {\footerFont\footerSize\color{footer}\textit{\thetitle}}
+\makeoddhead{topbottomcorner}{\footDecor}{}{}
+\makeoddfoot{topbottomcorner}%
+  {\footerFont\footerSize\color{footer}\textit{\leftmark}}
+  {}
+  {\footerFont\footerSize\color{footer}{\pageNumFont\thepage}}
+\makepsmarks{topbottomcorner}{%
+  \nouppercaseheads
+  \createmark{chapter}{left}{nonumber}{}{}
+  \createmark{section}{right}{nonumber}{}{}
+  \createplainmark{toc}{both}{\contentsname}
+  \createplainmark{lof}{both}{\listfigurename}
+  \createplainmark{lot}{both}{\listtablename}
+  \createplainmark{bib}{both}{\bibname}
+  \createplainmark{index}{both}{\indexname}
+  \createplainmark{glossary}{both}{\glossaryname}
+}
+
 \makepagestyle{bottomcorner}
 \makeevenhead{bottomcorner}{}{}{}
 \makeevenfoot{bottomcorner}{%
@@ -873,8 +939,8 @@ philo-sophical munindo amaravati thai-land}
 
 % alias the pagestyles into semantic names, "where it is used"
 
-\aliaspagestyle{normalpage}{topbottomcentered}
-\aliaspagestyle{chapter}{bottomcenter}
+\aliaspagestyle{normalpage}{topbottomcorner}
+\aliaspagestyle{chapter}{empty}
 \aliaspagestyle{book}{empty}
 \aliaspagestyle{part}{empty}
 \aliaspagestyle{afterpart}{empty}
@@ -1059,7 +1125,7 @@ philo-sophical munindo amaravati thai-land}
 
 \newcommand\chapterNoteFmt[1]{%
   \chapterNoteFont\chapterNoteSize\color{chapternote}%
-  \itshape #1%
+  #1%
 }
 
 \newcommand{\theChapterNote}{}
@@ -1136,6 +1202,106 @@ philo-sophical munindo amaravati thai-land}
       \par
     }%
   }
+}
+
+\makechapterstyle{alnilam}{
+  \chapterstyle{default}
+  \setlength{\beforechapskip}{30mm}
+  \setlength{\chapterTitleLeftSkip}{0pt}
+  \renewcommand\printchaptername{}
+  \renewcommand\chapternamenum{}
+  \renewcommand\chapnumfont{\chapterNumberFont\chapterNumberSize}
+  \renewcommand\printchapternum{%
+  }
+  \setlength{\midchapskip}{2\onelineskip}
+  \renewcommand\afterchapternum{\par\nobreak\vskip \midchapskip}
+  \renewcommand\printchapternonum{}
+  \renewcommand\chaptitlefont{\chapterTitleFont\chapterTitleSize}
+  \renewcommand*\printchaptertitle[1]{%
+    \mbox{}%
+    \AddToShipoutPictureFG*{%
+      \put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
+      %
+      \begin{tikzpicture}
+        \node (bg) [
+          minimum width = \BOOK@paperWidth + 6mm,
+          minimum height = \BOOK@paperHeight + 6mm,
+        ] {};
+        %
+        \node (title) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          below right=18mm and 0pt of bg.north west,
+        ] {%
+          \begin{minipage}{\BOOK@paperWidth}%
+            \centering
+            {%
+              \chapnumfont\color{chapternum}%
+              \textbf{\arabic{chapter}.}\hspace*{1em}%
+            }{%
+              \chaptitlefont\color{chaptertitle}%
+              ##1%
+            }%
+          \end{minipage}%
+        };%
+        %
+        \node (quote) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          below right=0pt and 0pt of bg.mid,
+          anchor=mid,
+        ] {%
+          \begin{minipage}{80mm}%
+            \setlength{\parindent}{0pt}%
+            \setlength{\parskip}{5pt}%
+            \ifchapternote%
+              \vskip 0.5\onelineskip%
+              \chapterNoteFmt{\theChapterNote}%
+              \global\chapternotefalse%
+            \fi%
+          \end{minipage}%
+        };%
+        %
+        \node (topbox) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          minimum height=10pt,
+          below left=33mm and 0pt of bg.north west,
+          anchor=north west,
+        ] {};
+        %
+        \draw [line width=2pt, draw=black!40]
+          (topbox.north west) -- (topbox.north east);
+        %
+        \draw [line width=1pt, draw=black!40, dash pattern=on 1pt off 5pt]
+          (topbox.south west) -- (topbox.south east);
+        %
+        \node (bottombox) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          minimum height=10pt,
+          above left=27mm and 0pt of bg.south west,
+          anchor=south west,
+        ] {};
+        %
+        \draw [line width=1pt, draw=black!40, dash pattern=on 1pt off 5pt]
+          (bottombox.north west) -- (bottombox.north east);
+        %
+        \draw [line width=2pt, draw=black!40]
+          (bottombox.south west) -- (bottombox.south east);
+        %
+        \node (pagenumber) [
+          minimum width=\BOOK@paperWidth + 6mm,
+          above right=12mm and 0pt of bg.south,
+          anchor=south,
+        ] {%
+          \begin{minipage}{80mm}%
+            \centering
+            \footerFont\footerSize\color{footer}{\pageNumFont\thepage}%
+          \end{minipage}%
+        };%
+        %
+      \end{tikzpicture}%
+    }}%
+  }
+  \setlength{\afterchapskip}{2.5\onelineskip}
+  \renewcommand\afterchaptertitle{\par\clearpage}%
 }
 
 \makechapterstyle{bellatrix}{%
@@ -1478,7 +1644,7 @@ philo-sophical munindo amaravati thai-land}
 %\createmark{chapter}{left}{nonumber}{}{}
 
 \newcommand\frontmatterChapterStyle{\chapterstyle{hightitle}}
-\newcommand\mainmatterChapterStyle{\chapterstyle{lowtitle}}
+\newcommand\mainmatterChapterStyle{\chapterstyle{alnilam}}
 \newcommand\appendixChapterStyle{\chapterstyle{hightitle}}
 \newcommand\backmatterChapterStyle{\chapterstyle{hightitle}}
 
@@ -1502,7 +1668,7 @@ philo-sophical munindo amaravati thai-land}
 % With no glue, the space will be at the bottom of the text block instead.
 
 \setbeforesecskip{-5.5ex \@plus -1ex \@minus -.2ex}
-\setaftersecskip{2.3ex}
+\setaftersecskip{3.3ex}
 
 \setbeforesubsecskip{-3.5ex \@plus -1ex \@minus -.2ex}
 \setaftersubsecskip{2.3ex}
@@ -1515,10 +1681,14 @@ philo-sophical munindo amaravati thai-land}
 %\setsechook{\setsecnumformat{\thesection.\space}}
 
 \newcommand\sectionFmt[1]{%
-  \sectionFont\fontsize{11.5}{14}\selectfont%
+  \sectionFont\fontsize{13}{13}\selectfont%
   \color{section}%
+  %\memRTLraggedright%
   \centering
-  \textls{\MakeUppercase{#1}}%
+  #1%
+  \vspace*{-2pt}%
+  {\color[gray]{0.6}\rule{0.8\linewidth}{0.5pt}}%
+  \par
 }
 
 \newcommand\subsectionFmt[1]{%
