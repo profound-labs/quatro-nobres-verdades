@@ -1,28 +1,106 @@
-\chapter{Uma mão cheia de folhas}
+\newpage\mbox{}
+\thispagestyle{empty}
+\newpage\mbox{}
+\thispagestyle{empty}
 
-A certa altura, estando O Iluminado a viver em Kosambi
-numa floresta de Simsapās, pegou numas quantas folhas e
-perguntou aos monges, «O que é que vocês pensam disto,
-monges? O que é mais numeroso, as poucas folhas que tenho
-na mão ou aquelas nas árvores desta floresta?».
-«As folhas que O Iluminado tem na mão são poucas,
-Senhor; as da floresta são bastante mais numerosas».
-«Assim também, monges, as coisas que eu aprendi por
-conhecimento directo são bastante numerosas; as coisas que
-eu vos ensinei são poucas.
-E porque é que eu não ensinei todas? Porque elas não
-trazem qualquer benefício, nem desenvolvimento na Vida
-Santa, porque não conduzem ao fim da ilusão, ao despojamento, à cessação, ao acalmar, ao conhecimento directo, à iluminação, à libertação. Por essa razão não as
-ensinei.
-E o que é que eu vos ensinei? Existe o sofrimento;
-existe a origem do sofrimento; existe o cessar do sofrimento;
-existe o caminho que conduz à cessação do sofrimento. Isto
-foi o que vos ensinei. E porque é que eu ensinei isto?
-Porque traz benefício e desenvolvimento na Vida Santa,
-porque conduz ao fim da ilusão, ao despojamento, à cessação, ao acalmar, ao conhecimento directo, à iluminação,
-à libertação. Assim sendo monges, que esta seja a vossa
-tarefa: Existe o sofrimento; existe a origem do sofrimento;
-existe o cessar do sofrimento; existe o caminho que leva à
+\makeatletter
+\AddToShipoutPictureFG*{%
+  \put(\LenToUnit{-3mm},\LenToUnit{-3mm}){%
+  %
+  \begin{tikzpicture}
+    \node (bg) [
+      minimum width = \BOOK@paperWidth + 6mm,
+      minimum height = \BOOK@paperHeight + 6mm,
+    ] {};
+    %
+    \node (title) [
+      minimum width=\BOOK@paperWidth + 6mm,
+      below right=18mm and 0pt of bg.north west,
+    ] {%
+      \begin{minipage}{\BOOK@paperWidth}%
+        \centering
+        {%
+          \chapterTitleFont\chapterTitleSize\color{chaptertitle}%
+          Uma Mão Cheia de Folhas%
+        }%
+      \end{minipage}%
+    };%
+    %
+    \node (quote) [
+      minimum width=\BOOK@paperWidth + 6mm,
+      below right=8mm and 0pt of bg.mid,
+      anchor=mid,
+    ] {%
+      \begin{minipage}{90mm}%
+        \setlength{\parindent}{0pt}%
+        \setlength{\parskip}{5pt}%
+\vspace*{0.5\onelineskip}%
+\fontsize{10}{13}\selectfont%
+\color{chapternote}%
+
+A certa altura, estando O Iluminado a viver em Kosambi numa floresta de
+Siṃsapās, pegou numas quantas folhas e perguntou aos monges,
+
+«O que é que vocês pensam disto, monges? O que é mais numeroso, as poucas folhas
+que tenho na mão ou aquelas nas árvores desta floresta?».
+
+«As folhas que O Iluminado tem na mão são poucas, Senhor; as da floresta são
+bastante mais numerosas».
+
+«Assim também, monges, as coisas que eu aprendi por conhecimento directo são
+bastante numerosas; as coisas que eu vos ensinei são poucas.
+
+E porque é que eu não ensinei todas? Porque elas não trazem qualquer benefício,
+nem desenvolvimento na Vida Santa, porque não conduzem ao fim da ilusão, ao
+despojamento, à cessação, ao acalmar, ao conhecimento directo, à iluminação, à
+libertação. Por essa razão não as ensinei.
+
+E o que é que eu vos ensinei? Existe o sofrimento; existe a origem do
+sofrimento; existe o cessar do sofrimento; existe o caminho que conduz à
+cessação do sofrimento. Isto foi o que vos ensinei.
+
+E porque é que eu ensinei isto? Porque traz benefício e desenvolvimento na Vida
+Santa, porque conduz ao fim da ilusão, ao despojamento, à cessação, ao acalmar,
+ao conhecimento directo, à iluminação, à libertação.
+
+Assim sendo monges, que esta seja a vossa tarefa: Existe o sofrimento; existe a
+origem do sofrimento; existe o cessar do sofrimento; existe o caminho que leva à
 cessação do sofrimento».
 
-Samyutta Nikāya, LVI, 31
+\quoteRef{Saṃyutta Nikāya 56.31}
+
+\vspace*{0.5\onelineskip}%
+
+      \end{minipage}%
+    };%
+    %
+    \node (topbox) [
+      minimum width=\BOOK@paperWidth + 6mm,
+      minimum height=10pt,
+      above=1mm of quote.north,
+      anchor=south,
+    ] {};
+    %
+    \draw [line width=2pt, draw=black!40]
+      (topbox.north west) -- (topbox.north east);
+    %
+    \draw [line width=1pt, draw=black!40, dash pattern=on 1pt off 5pt]
+      (topbox.south west) -- (topbox.south east);
+    %
+    \node (bottombox) [
+      minimum width=\BOOK@paperWidth + 6mm,
+      minimum height=10pt,
+      below=1mm of quote.south,
+      anchor=north,
+    ] {};
+    %
+    \draw [line width=1pt, draw=black!40, dash pattern=on 1pt off 5pt]
+      (bottombox.north west) -- (bottombox.north east);
+    %
+    \draw [line width=2pt, draw=black!40]
+      (bottombox.south west) -- (bottombox.south east);
+    %
+  \end{tikzpicture}%
+}}%
+\makeatother
+

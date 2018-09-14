@@ -433,6 +433,18 @@ philo-sophical munindo amaravati thai-land}
 ]%
 }{\end{itemize}}
 
+\newenvironment{packedenumerate}%
+{\begin{enumerate}[
+  itemindent=0pt,
+  leftmargin=15pt,
+  rightmargin=0pt,
+  itemsep=4pt,
+  topsep=0pt,
+  parsep=0pt,
+  partopsep=0pt,
+]%
+}{\end{enumerate}}
+
 \newcommand\speakerName[1]{%
   % The hangindent only works with alternating speakers.
   %\par\hangindent=1pc%
@@ -484,7 +496,7 @@ philo-sophical munindo amaravati thai-land}
 % === quotes ===
 
 \newlength{\quoteMargin}
-\setlength{\quoteMargin}{18pt}
+\setlength{\quoteMargin}{20pt}
 
 % FIXME
 %\setlength{\footnotemargin}{\quoteMargin}
@@ -520,7 +532,7 @@ philo-sophical munindo amaravati thai-land}
     \leftmargin    \quoteMargin
     \rightmargin   \quoteMargin
     \parsep        8pt
-    \topsep        0pt
+    \topsep        10pt
     \partopsep     0pt}%
 \item[]}%
 {\endlist}
@@ -712,7 +724,7 @@ philo-sophical munindo amaravati thai-land}
 }
 
 \newcommand\sectionBreak{%
-  \vspace{8pt \@plus 15pt \@minus 0pt}%
+  \vspace{20pt \@plus 15pt \@minus 0pt}%
   \par%
   {%
     \centering%
@@ -801,18 +813,7 @@ philo-sophical munindo amaravati thai-land}
 
 \addtodef{\backmatter}{}{%
   \bookmarksetup{startatroot}%
-}
-
-\renewenvironment{quote}%
-{\small
-\list{}{\rightmargin\leftmargin}%
-\item[]}%
-{\endlist}
-
-\newcommand\quoteref[1]{%
-\par
-{\footnotesize #1}
-\par
+  \addtocontents{toc}{\addvspace{15pt}}%
 }
 
 % adapted from base/latex.ltx
@@ -898,6 +899,29 @@ philo-sophical munindo amaravati thai-land}
   {}
   {\footerFont\footerSize\color{footer}{\pageNumFont\thepage}}
 \makepsmarks{topbottomcorner}{%
+  \nouppercaseheads
+  \createmark{chapter}{left}{nonumber}{}{}
+  \createmark{section}{right}{nonumber}{}{}
+  \createplainmark{toc}{both}{\contentsname}
+  \createplainmark{lof}{both}{\listfigurename}
+  \createplainmark{lot}{both}{\listtablename}
+  \createplainmark{bib}{both}{\bibname}
+  \createplainmark{index}{both}{\indexname}
+  \createplainmark{glossary}{both}{\glossaryname}
+}
+
+\makepagestyle{topbottomcorner-frontmatter}
+\makeevenhead{topbottomcorner-frontmatter}{}{}{}
+\makeevenfoot{topbottomcorner-frontmatter}%
+  {\footerFont\footerSize\color{footer}\thepage}
+  {}
+  {}
+\makeoddhead{topbottomcorner-frontmatter}{}{}{}
+\makeoddfoot{topbottomcorner-frontmatter}%
+  {}
+  {}
+  {\footerFont\footerSize\color{footer}{\pageNumFont\thepage}}
+\makepsmarks{topbottomcorner-frontmatter}{%
   \nouppercaseheads
   \createmark{chapter}{left}{nonumber}{}{}
   \createmark{section}{right}{nonumber}{}{}
@@ -1304,6 +1328,37 @@ philo-sophical munindo amaravati thai-land}
   \renewcommand\afterchaptertitle{\par\clearpage}%
 }
 
+\makechapterstyle{alnilam-front}{
+  \chapterstyle{lowtitle}
+  \setlength{\beforechapskip}{0pt}
+  \setlength{\chapterTitleLeftSkip}{0pt}
+  \renewcommand\chaptitlefont{\chapterTitleFont\chapterTitleSize}
+  \renewcommand*\printchaptertitle[1]{%
+    {%
+      \raggedright
+      \chaptitlefont\color{chaptertitle}%
+      ##1%
+      \par
+    }%
+  }
+}
+
+\makechapterstyle{alnilam-toc}{
+  \chapterstyle{lowtitle}
+  \setlength{\beforechapskip}{0pt}
+  \setlength{\chapterTitleLeftSkip}{28pt}
+  \renewcommand\chaptitlefont{\chapterTitleFont\chapterTitleSize}
+  \renewcommand*\printchaptertitle[1]{%
+    \raggedright\hspace*{\chapterTitleLeftSkip}%
+    \parbox{\linewidth - \chapterTitleLeftSkip}{%
+      \raggedright
+      \chaptitlefont\color{chaptertitle}%
+      ##1%
+      \par
+    }%
+  }
+}
+
 \makechapterstyle{bellatrix}{%
   \chapterstyle{default}
   \setlength{\beforechapskip}{40mm}
@@ -1643,10 +1698,10 @@ philo-sophical munindo amaravati thai-land}
 % No numbers in chapter mark
 %\createmark{chapter}{left}{nonumber}{}{}
 
-\newcommand\frontmatterChapterStyle{\chapterstyle{hightitle}}
+\newcommand\frontmatterChapterStyle{\chapterstyle{alnilam-front}}
 \newcommand\mainmatterChapterStyle{\chapterstyle{alnilam}}
-\newcommand\appendixChapterStyle{\chapterstyle{hightitle}}
-\newcommand\backmatterChapterStyle{\chapterstyle{hightitle}}
+\newcommand\appendixChapterStyle{\chapterstyle{alnilam-front}}
+\newcommand\backmatterChapterStyle{\chapterstyle{alnilam-front}}
 
 % append them to the macros
 \addtodef{\frontmatter}{}{\frontmatterChapterStyle}
