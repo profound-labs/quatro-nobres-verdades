@@ -231,7 +231,7 @@
 \newcommand{\chapterTitleSize}{\@setfontsize         \chapterTitleSize         {16}{16}}
 \newcommand{\chapterTitleFootnoteSize}{\@setfontsize \chapterTitleFootnoteSize {16}{30}}
 \newcommand{\chapterAuthorSize}{\@setfontsize        \chapterAuthorSize        {12}{14}}
-\newcommand{\chapterNoteSize}{\@setfontsize          \chapterNoteSize          {12}{15}}
+\newcommand{\chapterNoteSize}{\@setfontsize          \chapterNoteSize          {11}{15}}
 \newcommand{\footerSize}{\@setfontsize               \footerSize               {10.5}{10.5}}
 \newcommand{\headerSize}{\@setfontsize               \headerSize               {10}{10}}
 
@@ -1273,7 +1273,7 @@ philo-sophical munindo amaravati thai-land}
           below right=0pt and 0pt of bg.mid,
           anchor=mid,
         ] {%
-          \begin{minipage}{80mm}%
+          \begin{minipage}{85mm}%
             \setlength{\parindent}{0pt}%
             \setlength{\parskip}{5pt}%
             \ifchapternote%
