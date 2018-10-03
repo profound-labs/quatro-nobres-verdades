@@ -312,6 +312,12 @@
   }
 }{}
 
+% Portuguese repeats hyphen
+% http://tex.stackexchange.com/a/247298/831
+
+% generates a hyphen that will repeat on a new line
+\defineshorthand{"-}{\babelhyphen{repeat}}
+
 \hyphenpenalty=700
 \exhyphenpenalty=50
 \doublehyphendemerits=900
