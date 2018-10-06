@@ -200,8 +200,8 @@
 % header and footer
 
 \newcommand\headerFont\vollkornFont
-\newcommand\footerFont\vollkornFont
-\newcommand\pageNumFont\vollkornFont
+\newcommand\footerFont\sourceSansFont
+\newcommand\pageNumFont\sourceSansFont
 
 % chapter and section
 
@@ -877,15 +877,15 @@ philo-sophical munindo amaravati thai-land}
         \node (bottombox) [
           minimum width=\BOOK@paperWidth + 6mm,
           minimum height=3pt,
-          above left=12mm and 0pt of bg.south west,
+          above left=20mm and 0pt of bg.south west,
           anchor=south west,
           inner sep=0pt,
         ] {};
         %
-        \draw [line width=0.4pt, draw=black!25, dash pattern=on 1pt off 5pt]
+        \draw [line width=0.4pt, draw=black!45, dash pattern=on 1pt off 5pt]
           (bottombox.north west) -- (bottombox.north east);
         %
-        \draw [line width=0.4pt, draw=black!20]
+        \draw [line width=0.4pt, draw=black!30]
           (bottombox.south west) -- (bottombox.south east);
         %
       \end{tikzpicture}%
@@ -896,7 +896,7 @@ philo-sophical munindo amaravati thai-land}
 \makepagestyle{topbottomcorner}
 \makeevenhead{topbottomcorner}{\footDecor}{}{}
 \makeevenfoot{topbottomcorner}%
-  {\footerFont\footerSize\color{footer}\thepage}
+  {\footerFont\footerSize\color{footer}{\pageNumFont\thepage}}
   {}
   {\footerFont\footerSize\color{footer}\textit{\thetitle}}
 \makeoddhead{topbottomcorner}{\footDecor}{}{}
@@ -1834,7 +1834,7 @@ philo-sophical munindo amaravati thai-land}
 \settypeblocksize{29\baselineskip + \topskip}{95mm}{*}
 \setlrmargins{*}{*}{0.63}% gives: 22.30mm | 14.04mm
 \setulmargins{*}{*}{1.701}% Tall Pentagon
-\setlength{\footskip}{3\baselineskip}
+\setlength{\footskip}{55pt}
 
 \setlength{\headsep}{15pt}
 
