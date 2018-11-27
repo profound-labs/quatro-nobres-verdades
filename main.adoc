@@ -3,38 +3,44 @@
 :author: Ajahn Sumedho
 :creator: {author}
 :version: v1.0
-:revdate: 2018-07-23
+:revdate: 2018-11-27
 :doctype: book
 :lang: pt
-:pubs-logo: profound-pubs.jpg
-:publisher-name: Profound Publications
-:publisher-link-name: profound-labs.github.io
-:publisher-link-url: https://profound-labs.github.io/
-:source: https://profound-labs.github.io/
-//:keywords: subject, topic
+:pubs-logo: sumedharama-logo-only-w100.png
+:publisher-name: Publicações Sumedhārāma
+:publisher-link-name: www.sumedharama.pt
+:publisher-link-url: https://sumedharama.pt/
+:source: https://forestsangha.org
+:keywords: Ajahn Sumedho, Dhamma, Buddhism, RELIGION / Buddhism / Theravada
 :copyright: CC-BY-NC-ND 4.0
 :isbn: 978-989-8691-80-4
 :identifier: isbn:{isbn}
 :imagesdir: assets/photos/92dpi-ebook-sRGB
 :includes: manuscript/asciidoc
-:front-cover-image: image:desktop-cover.png[Front Cover,800,1200]
+:front-cover-image: image:desktop-cover.jpg[Front Cover,800,1200]
 :toc: left
-:toc-title: Contents
+:toc-title: Índice
 :toclevels: 0
-
-include::{includes}/dedication.adoc[]
-
-include::{includes}/foreword.adoc[]
-
-include::{includes}/preface.adoc[]
 
 include::{includes}/titlepage.adoc[]
 
-include::{includes}/01-chapter-one.adoc[]
+include::{includes}/folhas-quote.adoc[]
 
-include::{includes}/02-chapter-two.adoc[]
+include::{includes}/nota-do-tradutor.adoc[]
 
-include::{includes}/glossary.adoc[]
+include::{includes}/preface.adoc[]
+
+include::{includes}/introduction.adoc[]
+
+include::{includes}/01-primeira.adoc[]
+
+include::{includes}/02-segunda.adoc[]
+
+include::{includes}/03-terceira.adoc[]
+
+include::{includes}/04-quarta.adoc[]
+
+include::{includes}/sobre-o-autor.adoc[]
 
 include::{includes}/copyright.adoc[]
 
