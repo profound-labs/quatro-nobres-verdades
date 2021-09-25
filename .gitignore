@@ -11,6 +11,7 @@ tramp
 .\#*
 .projectile
 TAGS
+.auctex-auto/
 
 # Vim temp files
 [._]*.s[a-v][a-z]
