@@ -43,3 +43,9 @@
 \\enlargethispage\**[{]
 \\vspace\**[{]
 \\Large
+\\pagestyle[{]
+\\thispagestyle[{]
+\\setcounter[{]
+\\noindent
+\\begin[{]packedenumerate[}]
+\\end[{]packedenumerate[}]

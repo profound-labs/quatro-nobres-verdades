@@ -19,6 +19,8 @@ perl -0777 -pe "s/\\\\begin\{siderule-quote\}(.*?)\\\\end\{siderule-quote\}/\\\\
 perl -0777 -pe "s/\\\\begin\{openingVerse\}(.*?)\\\\end\{openingVerse\}/\\\\begin{verse}% <attr role=opening-verse>\n\\\\itshape \1\\\\end{verse}/gs" | \
 # glossarydescription
 sed -e 's/\\begin{glossarydescription}/\\begin{description}/; s/\\end{glossarydescription}/\\end{description}/;' | \
+# packedenumerate
+sed -e 's/\\begin{packedenumerate}/\\begin{enumerate}/; s/\\end{packedenumerate}/\\end{enumerate}/;' | \
 # chapter title and subtitle
 perl -0777 -pe "s/\\\\chapterTitle\{(.*?)\}(.*?)\\\\theChapterTitle/\2\1/gs" | \
 perl -0777 -pe "s/\\\\chapterSubtitle\{(.*?)\}(.*?)\\\\theChapterSubtitle/\2\1/gs" | \
@@ -41,13 +43,17 @@ perl -0777 -pe "s/\\\\thai\{(.*?)\}/\1/gs" | \
 perl -0777 -pe "s/\\\\textup\{(.*?)\}/{\\\\upshape \1}/gs" | \
 perl -0777 -pe "s/\\\\label\{.*?\}//gs" | \
 perl -0777 -pe "s/\\\\enlargethispage\**\{.*?\}//gs" | \
+perl -0777 -pe "s/\\\\pagestyle\{.*?\}//gs" | \
+perl -0777 -pe "s/\\\\thispagestyle\{.*?\}//gs" | \
 perl -0777 -pe "s/\\\\setlength\{.*?\}\{.*?\}//gs" | \
+perl -0777 -pe "s/\\\\setcounter\{.*?\}\{.*?\}//gs" | \
 perl -0777 -pe "s/\\\\pageref\{.*?\}/FIXME:pageref/gs" | \
 # Repeating hyphen (in Portuguese)
 sed 's/\(\w\)"-\(\w\)/\1-\2/g' |\
 sed 's/^\\vspace\**[{][^}]\+[}]%*$//g' |\
 sed 's/\\thinspace\s*/~/g' |\
 sed 's/\\par/\n\n/g' |\
+sed 's/\\noindent//g' |\
 sed 's/\\mainmatter//g' |\
 sed 's/\\centering//g' |\
 sed 's/\\raggedleft//g' |\

@@ -2,8 +2,8 @@
 :booktitle: {doctitle}
 :author: Ajahn Sumedho
 :creator: {author}
-:version: v1.0
-:revdate: 2018-11-27
+:version: v1.1
+:revdate: 2021-10-04
 :doctype: book
 :lang: pt
 :pubs-logo: sumedharama-logo-only-w100.png
